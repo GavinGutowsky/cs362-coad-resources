@@ -3,6 +3,17 @@ require 'rails_helper'
 RSpec.describe Organization, type: :model do
 
 =begin
+  describe "accessor attributes" do
+    it { is_expected.to respond_to(:agreement_one) }
+    it { is_expected.to respond_to(:agreement_two) }
+    it { is_expected.to respond_to(:agreement_three) }
+    it { is_expected.to respond_to(:agreement_four) }
+    it { is_expected.to respond_to(:agreement_five) }
+    it { is_expected.to respond_to(:agreement_six) }
+    it { is_expected.to respond_to(:agreement_seven) }
+    it { is_expected.to respond_to(:agreement_eight) }
+  end
+
   describe "attributes" do
     it { is_expected.to respond_to(:name) }
     it { is_expected.to respond_to(:status) }
@@ -18,6 +29,39 @@ RSpec.describe Organization, type: :model do
     it { is_expected.to respond_to(:transportation) }
   end
 =end
+
+  it "has an agreement_one attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_two attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_three attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_four attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_five attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_six attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_seven attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+
+  it "has an agreement_eight attribute" do
+    expect(Organization.new).to respond_to(:name)
+  end
+  
 
   it "has a name" do
     expect(Organization.new).to respond_to(:name)
