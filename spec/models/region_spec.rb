@@ -19,4 +19,14 @@ RSpec.describe Region, type: :model do
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   end
 
+  describe "methods" do
+    it "returns a region named Unspecified" do
+      expect(Region.unspecified.name).to eq('Unspecified')
+    end
+
+    it "has a string representation that is its name" do
+      expect(Region.new(name: 'Fake').to_s).to eq('Fake')
+    end
+  end
+
 end
