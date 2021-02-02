@@ -35,7 +35,7 @@ RSpec.describe ResourceCategory, type: :model do
     it "updates active attribute to false" do
       rc = ResourceCategory.create(active: true)
       rc.deactivate
-      expect(rc.active).to be_truthy
+      expect(rc.active).to be_falsy
     end
 
     it "is inactive when its active attribute is set to false" do
