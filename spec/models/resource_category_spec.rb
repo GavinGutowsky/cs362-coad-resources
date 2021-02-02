@@ -21,21 +21,21 @@ RSpec.describe ResourceCategory, type: :model do
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   end
 
-  describe "methods" do
-    it "finds or creates an object with name unspecified" do
+  describe "method" do
+    it "returns a resource category named Unspecified" do
       expect(ResourceCategory.unspecified.name).to eq('Unspecified')
     end
 
-    it "can be activated" do
-      rc = ResourceCategory.new(active: false)
+    it "updates active attribute to true" do
+      rc = ResourceCategory.create(active: false)
       rc.activate
       expect(rc.active).to be_truthy
     end
 
-    it "can be deactivated" do
-      rc = ResourceCategory.new(active: true)
+    it "updates active attribute to false" do
+      rc = ResourceCategory.create(active: true)
       rc.deactivate
-      expect(rc.active).to be_falsy
+      expect(rc.active).to be_truthy
     end
 
     it "is inactive when its active attribute is set to false" do
