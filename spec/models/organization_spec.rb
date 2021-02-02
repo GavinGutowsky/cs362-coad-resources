@@ -32,4 +32,40 @@ RSpec.describe Organization, type: :model do
     it { is_expected.to have_and_belong_to_many(:resource_categories) }
   end
 
+  describe "validators" do
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_length_of(:email)
+          .is_at_least(1) 
+          .is_at_most(255)
+          .on(:create) }
+    it "must have an email with valid format" do
+      organization = Organization.new(
+        name: "Fake",
+        status: 0,
+        phone: 'Fake',
+        email: 'fake@gamil.com',
+        description: 'Fake',
+        rejection_reason: 'Fake',
+        liability_insurance: 'Fake',
+        primary_name: 'Fake',
+        secondary_name: 'Fake',
+        secondary_phone: 'Fake',
+        title: 'Fake',
+        transportation: 0
+        )
+      expect(organization).to be_valid
+      organization.email = 'fa..ke#gmail.com'
+      expect(organization).to_not be_valid
+    end
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_length_of(:name)
+          .is_at_least(1) 
+          .is_at_most(255)
+          .on(:create) }
+    it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
+    it { is_expected.to validate_length_of(:description)
+          .is_at_most(1020)
+          .on(:create) }
+  end
+
 end
