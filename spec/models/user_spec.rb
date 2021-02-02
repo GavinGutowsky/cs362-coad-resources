@@ -10,4 +10,8 @@ RSpec.describe User, type: :model do
     expect(User.new).to respond_to(:role)
   end
 
+  it "belongs to an organization" do
+    expect(User.new).to belong_to(:organization)
+  end
+
 end
