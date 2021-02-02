@@ -16,4 +16,27 @@ RSpec.describe Ticket, type: :model do
     it { is_expected.to belong_to(:organization).optional }
   end
 
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_length_of(:name)
+          .is_at_least(1) 
+          .is_at_most(255)
+          .on(:create) }
+    it { is_expected.to validate_length_of(:description)
+          .is_at_most(1020)
+          .on(:create) }
+    it "must have a plausibly valid phone number" do
+      ticket = Ticket.new(
+        name: 'Fake',
+        description: 'Fake',
+        phone: '+1 541-330-8612',
+        region: Region.create(name: 'Fake'),
+        resource_category: ResourceCategory.create(name: 'Fake')
+        )
+      expect(ticket).to be_valid
+      ticket.phone = "5413308612"
+      expect(ticket).to_not be_valid
+    end
+  end
+
 end
