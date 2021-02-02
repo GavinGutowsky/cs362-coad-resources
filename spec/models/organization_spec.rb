@@ -111,4 +111,16 @@ RSpec.describe Organization, type: :model do
     expect(Organization.new).to respond_to(:transportation)
   end
 
+  it "has many users" do
+    expect(Organization.new).to have_many(:users)
+  end
+
+  it "has many tickets" do
+    expect(Organization.new).to have_many(:tickets)
+  end
+
+  it "has and belongs to many resource categories" do
+    expect(Organization.new).to have_and_belong_to_many(:resource_categories)
+  end
+
 end
