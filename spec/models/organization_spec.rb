@@ -68,4 +68,26 @@ RSpec.describe Organization, type: :model do
           .on(:create) }
   end
 
+  describe "methods" do
+    it "updates status attribute to approved" do
+      organization = Organization.new(status: 'submitted')
+      organization.approve
+      expect(organization.status).to eq('approved')
+    end
+
+    it "updates status attribute to rejected" do
+      organization = Organization.new(status: 'submitted')
+      organization.reject
+      expect(organization.status).to eq('rejected')
+    end
+
+    it "has a default status of submitted" do
+      expect(Organization.new.status).to eq('submitted')
+    end
+
+    it "has a string representation that is its name" do
+      expect(Organization.new(name: 'Fake').to_s).to eq('Fake')
+    end
+  end
+
 end
