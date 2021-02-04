@@ -39,4 +39,24 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
+  describe "methods" do
+    it "is open when its closed attribute is false" do
+      ticket = Ticket.new(closed: false)
+      expect(ticket.open?).to be_truthy
+      ticket.closed = true
+      expect(ticket.open?).to be_falsy
+    end
+
+    it "is captured when it belongs to an organization" do
+      ticket = Ticket.new
+      expect(ticket.captured?).to be_falsy
+      ticket.organization = Organization.new
+      expect(ticket.captured?).to be_truthy
+    end
+
+    it "has a string representation its id" do
+      expect(Ticket.new(id: 3).to_s).to eq("Ticket 3")
+    end
+  end
+
 end
