@@ -39,4 +39,14 @@ RSpec.describe User, type: :model do
           .on(:create) }
   end
 
+  describe "methods" do
+    it "has a default role of organization" do
+      expect(User.new.role).to eq("organization")
+    end
+
+    it "has a string representation that is its email" do
+      expect(User.new(email: 'Fake').to_s).to eq('Fake')
+    end
+  end
+
 end

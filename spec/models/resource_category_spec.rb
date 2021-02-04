@@ -21,7 +21,7 @@ RSpec.describe ResourceCategory, type: :model do
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   end
 
-  describe "method" do
+  describe "methods" do
     it "returns a resource category named Unspecified" do
       expect(ResourceCategory.unspecified.name).to eq('Unspecified')
     end
