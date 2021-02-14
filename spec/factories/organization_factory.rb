@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :organization do
   name { 'Fake' }
-  status { 'approved' }
+  status { :approved }
   phone { '541-330-8612' }
+  secondary_phone { '541-331-8612' }
   email { 'fake@email.com' }
   description { 'Fake description' }
   rejection_reason { 'Fake reason' }
