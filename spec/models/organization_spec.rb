@@ -39,20 +39,7 @@ RSpec.describe Organization, type: :model do
           .is_at_most(255)
           .on(:create) }
     it "must have an email with valid format" do
-      organization = Organization.new(
-        name: "Fake",
-        status: 0,
-        phone: 'Fake',
-        email: 'fake@gamil.com',
-        description: 'Fake',
-        rejection_reason: 'Fake',
-        liability_insurance: 'Fake',
-        primary_name: 'Fake',
-        secondary_name: 'Fake',
-        secondary_phone: 'Fake',
-        title: 'Fake',
-        transportation: 0
-        )
+      organization = build(:organization)
       expect(organization).to be_valid
       organization.email = 'fa..ke#gmail.com'
       expect(organization).to_not be_valid
@@ -70,13 +57,13 @@ RSpec.describe Organization, type: :model do
 
   describe "methods" do
     it "updates status attribute to approved" do
-      organization = Organization.new(status: 'submitted')
+      organization = build(:organization)
       organization.approve
       expect(organization.status).to eq('approved')
     end
 
     it "updates status attribute to rejected" do
-      organization = Organization.new(status: 'submitted')
+      organization = build(:organization)
       organization.reject
       expect(organization.status).to eq('rejected')
     end
@@ -86,7 +73,7 @@ RSpec.describe Organization, type: :model do
     end
 
     it "has a string representation that is its name" do
-      expect(Organization.new(name: 'Fake').to_s).to eq('Fake')
+      expect(build(:organization).to_s).to eq('Fake')
     end
   end
 
