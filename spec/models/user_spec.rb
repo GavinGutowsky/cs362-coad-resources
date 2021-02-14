@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   it "has an email" do
-    expect(User.new).to respond_to(:email)
+    expect(build(:user)).to respond_to(:email)
   end
 
   it "has a role" do
-    expect(User.new).to respond_to(:role)
+    expect(build(:user)).to respond_to(:role)
   end
 
   it "belongs to an organization" do
-    expect(User.new).to belong_to(:organization).optional
+    expect(build(:user)).to belong_to(:organization).optional
   end
 
   describe "validators" do
@@ -22,11 +22,7 @@ RSpec.describe User, type: :model do
           .on(:create) }
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
     it "must have an email with valid format" do
-      user = User.new(
-        email: "user@gmail.com",
-        role: 0,
-        password: 'FakePassword'
-        )
+      user = build(:user)
       expect(user).to be_valid
       user.email = "us..er#gmail.com"
       expect(user).to_not be_valid
@@ -41,11 +37,11 @@ RSpec.describe User, type: :model do
 
   describe "methods" do
     it "has a default role of organization" do
-      expect(User.new.role).to eq("organization")
+      expect(build(:user).role).to eq("organization")
     end
 
     it "has a string representation that is its email" do
-      expect(User.new(email: 'Fake').to_s).to eq('Fake')
+      expect(build(:user).to_s).to eq('fake@email.com')
     end
   end
 
