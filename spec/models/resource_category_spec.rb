@@ -27,26 +27,26 @@ RSpec.describe ResourceCategory, type: :model do
     end
 
     it "updates active attribute to true" do
-      rc = ResourceCategory.create(active: false)
-      rc.activate
-      expect(rc.active).to be_truthy
+      resource_category = build(:resource_category, :deactive)
+      resource_category.activate
+      expect(resource_category.active).to be_truthy
     end
 
     it "updates active attribute to false" do
-      rc = ResourceCategory.create(active: true)
-      rc.deactivate
-      expect(rc.active).to be_falsy
+      resource_category = build(:resource_category, :active)
+      resource_category.deactivate
+      expect(resource_category.active).to be_falsy
     end
 
     it "is inactive when its active attribute is set to false" do
-      rc = ResourceCategory.new(active: false)
-      expect(rc.inactive?).to be_truthy
-      rc.active = true
-      expect(rc.inactive?).to be_falsy
+      resource_category = build(:resource_category, :deactive)
+      expect(resource_category.inactive?).to be_truthy
+      resource_category.active = true
+      expect(resource_category.inactive?).to be_falsy
     end
 
     it "has a string representation that is its name" do
-      expect(ResourceCategory.new(name: 'Fake').to_s).to eq('Fake')
+      expect(build(:resource_category).to_s).to eq('Fake Resource Category')
     end
   end
 
