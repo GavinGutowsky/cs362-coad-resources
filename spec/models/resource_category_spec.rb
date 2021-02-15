@@ -21,6 +21,32 @@ RSpec.describe ResourceCategory, type: :model do
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   end
 
+  describe 'scopes' do
+    describe 'active' do
+      it 'contains active resource categories' do
+        active_resource_category = create(:resource_category, :active)
+        expect(ResourceCategory.active).to include(active_resource_category)
+      end
+      
+      it 'does not contain inactive resource categories' do
+        inactive_resource_category = create(:resource_category, :inactive)
+        expect(ResourceCategory.active).to_not include(inactive_resource_category)
+      end
+    end
+
+    describe 'inactive' do
+      it 'contains inactive resource categories' do
+        inactive_resource_category = create(:resource_category, :inactive)
+        expect(ResourceCategory.inactive).to include(inactive_resource_category)
+      end
+
+      it 'does not contain active resource categories' do
+        active_resource_category = create(:resource_category, :active)
+        expect(ResourceCategory.inactive).to_not include(active_resource_category)
+      end
+    end
+  end
+
   describe 'methods' do
     it 'returns a resource category named Unspecified' do
       expect(ResourceCategory.unspecified.name).to eq('Unspecified')
