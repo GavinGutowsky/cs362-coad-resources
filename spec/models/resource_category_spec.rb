@@ -27,7 +27,7 @@ RSpec.describe ResourceCategory, type: :model do
     end
 
     it 'updates active attribute to true' do
-      resource_category = build(:resource_category, :deactive)
+      resource_category = build(:resource_category, :inactive)
       resource_category.activate
       expect(resource_category.active).to be_truthy
     end
@@ -39,7 +39,7 @@ RSpec.describe ResourceCategory, type: :model do
     end
 
     it 'is inactive when its active attribute is set to false' do
-      resource_category = build(:resource_category, :deactive)
+      resource_category = build(:resource_category, :inactive)
       expect(resource_category.inactive?).to be_truthy
       resource_category.active = true
       expect(resource_category.inactive?).to be_falsy

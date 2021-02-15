@@ -7,7 +7,7 @@ FactoryBot.define do
       active { true }
     end
 
-    trait :deactive do
+    trait :inactive do
       active { false }
     end
   
