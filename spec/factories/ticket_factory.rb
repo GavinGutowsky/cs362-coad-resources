@@ -5,14 +5,15 @@ FactoryBot.define do
     phone { '+1 541-330-8612' }
     closed { false }
     region
-    resource_category 
-  end
+    resource_category
 
-  trait :closed do
-    closed { true }
-  end
+    trait :closed do
+      closed { true }
+    end
 
-  trait :open do
-    closed { false }
+    trait :open do
+      closed { false }
+    end
+  
   end
 end
