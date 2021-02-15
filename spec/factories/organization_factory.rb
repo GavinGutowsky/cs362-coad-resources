@@ -4,7 +4,7 @@ FactoryBot.define do
   status { :submitted }
   phone { '541-330-8612' }
   secondary_phone { '541-331-8612' }
-  email { 'fake@email.com' }
+  sequence(:email) { |n| "fake#{n}@email.com" }
   description { 'Fake description' }
   rejection_reason { 'Fake reason' }
   liability_insurance { true }

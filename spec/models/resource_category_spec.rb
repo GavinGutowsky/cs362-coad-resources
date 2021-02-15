@@ -72,7 +72,7 @@ RSpec.describe ResourceCategory, type: :model do
     end
 
     it 'has a string representation that is its name' do
-      expect(build(:resource_category).to_s).to eq('Fake Resource Category')
+      expect(build(:resource_category, name: 'Fake Resource Category').to_s).to eq('Fake Resource Category')
     end
   end
 

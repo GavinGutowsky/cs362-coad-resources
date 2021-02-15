@@ -33,10 +33,6 @@ RSpec.describe Ticket, type: :model do
     end
   end
 
-  describe 'scope' do
-
-  end
-
   describe 'methods' do
     it 'is open when its closed attribute is false' do
       ticket = build(:ticket)

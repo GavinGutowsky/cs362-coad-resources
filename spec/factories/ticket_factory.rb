@@ -14,6 +14,14 @@ FactoryBot.define do
     trait :open do
       closed { false }
     end
+
+    trait :organization do
+      organization
+    end
+
+    trait :nil_organization do
+      organization_id { nil }
+    end
   
   end
 end
