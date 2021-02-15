@@ -26,13 +26,7 @@ RSpec.describe Ticket, type: :model do
           .is_at_most(1020)
           .on(:create) }
     it "must have a plausibly valid phone number" do
-      ticket = Ticket.new(
-        name: 'Fake',
-        description: 'Fake',
-        phone: '+1 541-330-8612',
-        region: Region.create(name: 'Fake'),
-        resource_category: ResourceCategory.create(name: 'Fake')
-        )
+      ticket = create(:ticket)
       expect(ticket).to be_valid
       ticket.phone = "5413308612"
       expect(ticket).to_not be_valid
@@ -41,14 +35,14 @@ RSpec.describe Ticket, type: :model do
 
   describe "methods" do
     it "is open when its closed attribute is false" do
-      ticket = Ticket.new(closed: false)
+      ticket = build(:ticket)
       expect(ticket.open?).to be_truthy
       ticket.closed = true
       expect(ticket.open?).to be_falsy
     end
 
     it "is captured when it belongs to an organization" do
-      ticket = Ticket.new
+      ticket = build(:ticket)
       expect(ticket.captured?).to be_falsy
       ticket.organization = Organization.new
       expect(ticket.captured?).to be_truthy
