@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe Region, type: :model do
 
   it "has a name" do
-    expect(Region.new).to respond_to(:name)
+    expect(build(:region)).to respond_to(:name)
   end
 
   it "has many tickets" do
-    expect(Region.new).to have_many(:tickets)
+    expect(build(:region)).to have_many(:tickets)
   end
 
   describe "validators" do
@@ -25,7 +25,7 @@ RSpec.describe Region, type: :model do
     end
 
     it "has a string representation that is its name" do
-      expect(Region.new(name: 'Fake').to_s).to eq('Fake')
+      expect(build(:region, name: 'Fake Region').to_s).to eq('Fake Region')
     end
   end
 
