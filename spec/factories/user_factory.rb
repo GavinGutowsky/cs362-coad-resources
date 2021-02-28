@@ -8,6 +8,10 @@ FactoryBot.define do
       organization
     end
 
+    trait :approved_organization do
+      organization { build(:organization, :approved) }
+    end
+
     trait :admin do
       role { :admin }
     end
