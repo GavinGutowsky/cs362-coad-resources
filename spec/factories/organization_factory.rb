@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :organization do
-  name { 'Fake Organization' }
+  sequence(:name) { |n| "Fake Organization #{n}" }
   status { :submitted }
   phone { '541-330-8612' }
   secondary_phone { '541-331-8612' }
