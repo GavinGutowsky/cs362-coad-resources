@@ -9,12 +9,13 @@ RSpec.describe 'Deleting a Region', type: :feature do
   end
 
   specify 'succeeds' do
-    Region.create(name: 'Fake Region')
+    region_name = 'Fake Region'
+    Region.create(name: region_name)
     log_in_as(admin)
     click_on 'Regions'
-    click_on 'Fake Region'
+    click_on region_name
     click_on 'Delete'
-    expect(page.body).not_to have_selector(:link_or_button, 'Fake Region')
+    expect(page.body).not_to have_selector(:link_or_button, region_name)
   end
 
 end
