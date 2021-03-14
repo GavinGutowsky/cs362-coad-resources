@@ -18,4 +18,13 @@ RSpec.describe 'Creating a Region', type: :feature do
     expect(page.body).to have_selector(:link_or_button, region_name)
   end
 
+  specify 'fails when no name is entered' do
+    region_name = 'Fake Region'
+    log_in_as(admin)
+    click_on 'Regions'
+    click_on 'Add Region'
+    click_on 'Add Region'
+    expect(page.body).to have_text('error')
+  end
+  
 end
