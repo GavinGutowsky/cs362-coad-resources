@@ -9,7 +9,10 @@ RSpec.describe DashboardHelper, type: :helper do
      end
 
      it 'returns dashboard for submitted organization user' do
-       
+       submitted_organization_user = double
+       allow(submitted_organization_user).to receive(:admin?).and_return(false)
+       allow(submitted_organization_user).to receive_message_chain('organization.submitted?').and_return(true)
+       expect(dashboard_for(submitted_organization_user)).to eq('organization_submitted_dashboard')
      end
 
      it 'returns dashboard for approved organization user' do
