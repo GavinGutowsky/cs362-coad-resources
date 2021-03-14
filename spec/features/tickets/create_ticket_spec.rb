@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Creating a Ticket', type: :feature do
 
-  specify 'succeeds' do
+  before do
     Region.create(name: 'Fake Region')
     ResourceCategory.create(name: 'Fake Resource Category')
+  end
+
+  specify 'succeeds' do
     visit dashboard_path
     click_on 'Disaster Resource Network'
     click_on 'Get Help'
@@ -17,8 +20,6 @@ RSpec.describe 'Creating a Ticket', type: :feature do
   end
 
   specify 'fails when no name is entered' do
-    Region.create(name: 'Fake Region')
-    ResourceCategory.create(name: 'Fake Resource Category')
     visit dashboard_path
     click_on 'Disaster Resource Network'
     click_on 'Get Help'
@@ -30,8 +31,6 @@ RSpec.describe 'Creating a Ticket', type: :feature do
   end
 
   specify 'fails when no phone number is entered' do
-    Region.create(name: 'Fake Region')
-    ResourceCategory.create(name: 'Fake Resource Category')
     visit dashboard_path
     click_on 'Disaster Resource Network'
     click_on 'Get Help'
@@ -43,7 +42,6 @@ RSpec.describe 'Creating a Ticket', type: :feature do
   end
 
   specify 'fails when no region is selected' do
-    ResourceCategory.create(name: 'Fake Resource Category')
     visit dashboard_path
     click_on 'Disaster Resource Network'
     click_on 'Get Help'
@@ -55,7 +53,6 @@ RSpec.describe 'Creating a Ticket', type: :feature do
   end
 
   specify 'fails when no resource category is selected' do
-    Region.create(name: 'Fake Region')
     visit dashboard_path
     click_on 'Disaster Resource Network'
     click_on 'Get Help'
